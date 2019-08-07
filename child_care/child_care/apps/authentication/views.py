@@ -10,7 +10,7 @@ class RegistrationAPIView(APIView):
     """ User registration class which allows any user to hit this endpoint
         Authenticated or not authenticated
     """
-    parser_classes = (AllowAny,)
+    permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
 
     def post(self, request):
@@ -34,3 +34,7 @@ class RegistrationAPIView(APIView):
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        res_message = "user" + \
+            f"{serializer.data.get('email')}" + "successfully created"
+
+        return Response(data=res_message, status=status.HTTP_201_CREATED)
