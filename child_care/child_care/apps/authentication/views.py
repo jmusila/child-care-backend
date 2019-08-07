@@ -27,7 +27,7 @@ class RegistrationAPIView(APIView):
         try:
             if User.objects.get(username=user['username']):
                 message = "a user with that username already exists"
-                return Response({"erroe": message}, status.HTTP_409_CONFLICT)
+                return Response({"error": message}, status.HTTP_409_CONFLICT)
         except User.DoesNotExist:
             pass
 

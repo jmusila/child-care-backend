@@ -35,6 +35,9 @@ class UserManager(BaseUserManager):
 
         return user
 
+    def get_by_natural_key(self, username):
+        return self.get(username=username)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     """ indexing fields in the db """
